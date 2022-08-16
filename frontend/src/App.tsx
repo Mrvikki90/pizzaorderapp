@@ -5,11 +5,11 @@ import Router from './Router';
 
 function App() {
   return (
- <>
-  <ChakraProvider>
-   <Router/>
-  </ChakraProvider> 
- </>
+    <>
+      <ChakraProvider>
+        <Router />
+      </ChakraProvider>
+    </>
   );
 }
 
