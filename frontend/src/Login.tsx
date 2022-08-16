@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom'
 import { SubmitHandler, useForm } from "react-hook-form";
 
+
 const Login = () => {
 
   type inputs = {
@@ -21,15 +22,16 @@ const Login = () => {
     const [email , setEmail] = useState("");
     const [password , setPassword] = useState(""); 
 
-    const handelLogin = async (data:inputs) =>{
-      let Url = "http://localhost:8000/user/login"; 
+    const handelLogin = async (data:any) =>{
+      let Url = "http://localhost:8000/auth/login"; 
       let result  =  await axios.post(Url,data)
-      console.log(result.data)
-      if(result){
+      console.log(result)
+      localStorage.setItem("auth",result.data)
+      if(result.data){
         alert("login sucscesfully");
-        navigate('/cartitems');
+        navigate('/cart');
       }else{
-        alert("enter credentials")
+        alert("wrong credentials")
       }
       
       

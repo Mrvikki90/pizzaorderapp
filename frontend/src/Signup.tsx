@@ -36,13 +36,14 @@ const handelSignup = () =>{
           <FormControl display={'grid'} marginTop={'10'} alignItems={'center'} justifyContent={'center'}>
           <FormLabel>Name</FormLabel>
             <Input type='name' 
-                onChange={(e:any) => setName(e.target.value)}/>
-            <FormLabel>Email address</FormLabel>
+                onChange={e => setName(e.target.value)}/>
+            <FormLabel>Email addre
+                ss</FormLabel>
             <Input type='email' 
-                onChange={(e:any) => setEmail(e.target.value)}/>
+                onChange={(e) => setEmail(e.target.value)}/>
             <FormLabel>Password</FormLabel>
             <Input type='password' 
-                onChange={(e:any) => setPassword(e.target.value)}/>
+                onChange={(e) => setPassword(e.target.value)}/>
             <Button onClick={handelSignup}
                 margin={4} colorScheme='teal' type='submit'>Sign Up
             </Button>
