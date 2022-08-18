@@ -13,7 +13,7 @@ import Orders from './Orders';
 export interface cartItemType {
   id: number;
   ingredents: string;
-  price: number;
+  ingPrice: number;
   createdAt: string;
   updatedAt: string;
   amount: number;
