@@ -1,29 +1,45 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
+import { JwtService } from "@nestjs/jwt";
 import { InjectModel } from "@nestjs/sequelize";
 import { User } from "./user.modal";
 
 
 @Injectable()
-export class userService{
-    findOne(user: User) {
-        throw new Error("Method not implemented.");
-    }
+export class userService {
 
-    constructor(
-        @InjectModel(User)
-        private usersModel: typeof User
-    ){}
+  constructor(
+    @InjectModel(User)
+    private readonly usersModel: typeof User
+  ) { }
 
-   async createUser(user:User):Promise<User>{
-    return this.usersModel.create({...user})
-   }
+  async createUser(user: User): Promise<User> {
+    return this.usersModel.create({ ...user })
+  }
 
-   async findByLogin({ email, password }: User): Promise<User> {    
-    const user = await this.usersModel.findOne({ where: { email } });
-    if (!user) {
-        throw new HttpException('User not found', HttpStatus.UNAUTHORIZED);    
-    }
-    return user;  
-}
+  async getUser(email: string, password: string): Promise<User> {
+    const data: any = await this.usersModel.findOne({
+      where: {
+        email: email,
+        password: password
+
+      },
+    })
+    console.log(data.dataValues);
+    return data.dataValues
+  }
+
+  async fetchUser(): Promise<User[]> {
+    return this.usersModel.findAll<User>();
+  }
+
+
+  getUserByName(name: User, password: User): Promise<User> {
+    return this.usersModel.findOne({
+      where: {
+        name: name,
+        password: password
+      }
+    });
+  }
 
 }
